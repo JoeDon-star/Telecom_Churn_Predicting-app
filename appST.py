@@ -12,8 +12,6 @@ def load_model():
     with open("best_model.pkl", "rb") as file:
         return joblib.load(file)
 
-model = load_model()
-
 # Define expected feature names (must match trained model)
 feature_names = [
     'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'PhoneService', 'PaperlessBilling',
