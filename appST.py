@@ -6,14 +6,18 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
 
-# Load the model
 @st.cache_resource
 def load_model():
-    with open("best_model.pkl", "rb") as file:
+    model_path = "best_model.pkl"
+    if not os.path.exists(model_path):
+        st.error(f"Model file not found: {model_path}")
+        return None
+    with open(model_path, "rb") as file:
         return joblib.load(file)
-        
-# Load the model
+
 model = load_model()
+if model is None:
+    st.stop()
 
 # Define expected feature names (must match trained model)
 feature_names = [
