@@ -4,9 +4,5 @@ pandas
 numpy
 joblib
 seaborn
-plotly.express
-os
-pygments
-mdurl
-markdown-it-py
-rich
+matplotlib
+plotly
