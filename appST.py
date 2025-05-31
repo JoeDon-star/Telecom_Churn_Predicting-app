@@ -9,7 +9,7 @@ import os
 
 @st.cache_resource
 def load_model():
-    model_path = "best_model.pkl"
+    model_path = "Best_model.pkl"
     if not os.path.exists(model_path):
         st.error(f"Model file not found: {model_path}")
         return None
