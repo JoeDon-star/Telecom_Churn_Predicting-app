@@ -7,24 +7,13 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import os
 
-# Load model directly
+# Load the model
 @st.cache_resource
-def load_and_return_model():
-    model_path = "best_model.pkl"
-    if not os.path.exists(model_path):
-        st.error(f"Model file not found: {model_path}")
-        st.stop()
-    with open(model_path, "rb") as file:
+def load_model():
+    with open("model_Izma.pkl", "rb") as file:
         return joblib.load(file)
 
-# Load model inline
-try:
-    with open("best_model.pkl", "rb") as file:
-        model = joblib.load(file)
-except FileNotFoundError:
-    st.error("Model file 'best_model.pkl' not found. Please upload or include it in your app directory.")
-    st.stop()
-
+model = load_model()
 
 # Define expected feature names (must match trained model)
 feature_names = [
@@ -41,23 +30,18 @@ st.markdown("""This application predicts the likelihood of a customer churning b
 Please upload a CSV file with customer data or fill out the form at the side bar and click the predict button below to get the churn prediction.""")
 st.divider()
 
-## Get feature importances
-try:
-    importances = model.feature_importances_
-except AttributeError:
-    st.error("The loaded model does not support feature importances.")
-    st.stop()
+#Ploting the list of the importance features
+feature_importance = model.feature_importances_
 
-# Create DataFrame for visualization
-importance_df = pd.DataFrame({
-    'Feature': feature_names,
-    'Importance': importances
-}).sort_values(by='Importance', ascending=False)
+feature_df = pd.DataFrame({
+                'Feature': feature_names,
+                'Importance': feature_importance
+            }).sort_values(by='Importance', ascending=False)
 
-# Plot feature importance
-st.subheader("Feature Importance Chart")
+st.subheader("Feature Importance")
+st.write("The chart below indicates how variables contribute to the model prediction")
 fig, ax = plt.subplots(figsize=(10, 6))
-sns.barplot(data=importance_df, x="Importance", y="Feature", palette="cividis", ax=ax)
+sns.barplot(data=feature_df, x='Importance',y= 'Feature', hue='Feature',legend = False, ax=ax, palette="cividis")
 ax.set_title("Feature Importance for Churn Prediction")
 st.pyplot(fig)
 
