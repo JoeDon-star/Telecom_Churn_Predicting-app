@@ -12,7 +12,7 @@ def load_model():
     with open("best_model.pkl", "rb") as file:
         return joblib.load(file)
         
-# Call the function to load model
+# Load the model
 model = load_model()
 
 # Define expected feature names (must match trained model)
