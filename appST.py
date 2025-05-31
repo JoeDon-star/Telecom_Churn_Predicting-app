@@ -9,7 +9,7 @@ import plotly.express as px
 # Load the model
 @st.cache_resource
 def load_model():
-    with open("model_best4.pkl", "rb") as file:
+    with open("Best_model.pkl", "rb") as file:
         return joblib.load(file)
 
 model = load_model()
