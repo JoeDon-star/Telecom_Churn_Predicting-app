@@ -11,6 +11,9 @@ import plotly.express as px
 def load_model():
     with open("best_model.pkl", "rb") as file:
         return joblib.load(file)
+        
+# Call the function to load model
+model = load_model()
 
 # Define expected feature names (must match trained model)
 feature_names = [
