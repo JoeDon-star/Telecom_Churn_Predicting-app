@@ -7,11 +7,17 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import os
 
-# Load the model
 @st.cache_resource
 def load_model():
-    with open("best_model.pkl", "rb") as file:
-        return joblib.load(file)
+    try:
+        with open("best_model.pkl", "rb") as file:
+            return joblib.load(file)
+    except FileNotFoundError:
+        st.error("Model file not found. Please make sure 'best_model.pkl' is in your project folder.")
+        st.stop()
+    except Exception as e:
+        st.error(f"Failed to load model: {e}")
+        st.stop()
 
 model = load_model()
 
