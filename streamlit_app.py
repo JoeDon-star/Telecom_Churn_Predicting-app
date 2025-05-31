@@ -10,7 +10,7 @@ import os
 # Load the model
 @st.cache_resource
 def load_model():
-    with open("model_Izma.pkl", "rb") as file:
+    with open("best_model.pkl", "rb") as file:
         return joblib.load(file)
 
 model = load_model()
