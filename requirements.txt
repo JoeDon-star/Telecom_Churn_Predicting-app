@@ -6,3 +6,7 @@ joblib
 seaborn
 plotly.express
 os
+pygments
+mdurl
+markdown-it-py
+rich
