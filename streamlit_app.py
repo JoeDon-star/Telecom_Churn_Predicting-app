@@ -36,6 +36,41 @@ st.markdown("""This application predicts the likelihood of a customer churning b
 Please upload a CSV file with customer data or fill out the form at the side bar and click the predict button below to get the churn prediction.""")
 st.divider()
 
+# You can replace these with actual dynamic values if available
+num_customers = 7043
+model_performance = "90%"  # could also be a float like 0.90 and formatted
+non_churners_rate = "73%"
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric(label="👤 Total Customers", value=f"{num_customers:,}")
+
+with col2:
+    st.metric(label="📈 Model Accuracy", value=model_performance)
+
+with col3:
+    st.metric(label="✅ Non-Churners-Rate", value=non_churners_rate)
+
+st.markdown("## 🧠 Model Summary")
+st.info(
+    """
+    This churn prediction model was built using a **Random Forest Classifier**, 
+    which is an **ensemble machine learning algorithm** based on decision trees.
+
+    - ✅ **Type:** Supervised Learning
+    - 🔍 **Goal:** Classification — Predict whether a customer will churn (`Yes` or `No`)
+    - 🌲 **Model Used:** Random Forest (with multiple decision trees)
+    - 📊 **Evaluation Metric:** Accuracy (currently at 90%)
+    - 📁 **Trained On:** Telecom customer behavior data
+    - 🧮 **Input Features:** 19 features including contract type, monthly charges, internet service, and more
+    - 🧠 **Why Random Forest?**
+        - Handles both categorical and numerical features well
+        - Reduces overfitting through tree averaging
+        - Provides feature importance for interpretability
+    """
+)
+
 #Ploting the list of the importance features
 feature_importance = model.feature_importances_
 
@@ -55,7 +90,7 @@ st.pyplot(fig)
 st.sidebar.image("dataset-cover.png", use_container_width=True)
 st.sidebar.title("Telecom Churn Prediction")
 st.sidebar.markdown("""[Example CSV input file](https://drive.google.com/file/d/1R4udxBpVc4l9zuJ5oPiSEKhWRwdyoYwS/view?usp=sharing)""")
-uploaded_file = st.sidebar.file_uploader("Upload your csv file", type=["csv"])
+uploaded_file = st.sidebar.file_uploader("Upload your csv file when uploaded check bottom page for result", type=["csv"])
 
 # Encoding mappings
 encoding_maps = {
