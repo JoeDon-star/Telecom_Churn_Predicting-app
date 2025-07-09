@@ -21,7 +21,7 @@ def load_model():
 
 model = load_model()
 
-# Define expected feature names (must match trained model)
+# Define expected feature names matching the trained model
 feature_names = [
     'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'PhoneService', 'PaperlessBilling',
     'MultipleLines', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
@@ -36,9 +36,9 @@ st.markdown("""This application predicts the likelihood of a customer churning b
 Please upload a CSV file with customer data or fill out the form at the side bar and click the predict button below to get the churn prediction.""")
 st.divider()
 
-# You can replace these with actual dynamic values if available
+# information of dataset and model
 num_customers = 7043
-model_performance = "90%"  # could also be a float like 0.90 and formatted
+model_performance = "90%" 
 non_churners_rate = "73%"
 
 col1, col2, col3 = st.columns(3)
