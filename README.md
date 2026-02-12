@@ -74,10 +74,6 @@ streamlit run app.py
 - ├── requirements.txt
 - └── README.md
 
-### 📽️ image 
-images of the app
-<img width="1910" height="963" alt="Screenshot 2025-06-01 123622" src="https://github.com/user-attachments/assets/abd24f17-d85b-42b9-b15f-b79a34c964af" />
-
 ### 📈 Future Improvements
 
 - Add more ML models (XGBoost, LightGBM)
